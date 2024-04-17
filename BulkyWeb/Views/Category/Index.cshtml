@@ -1,7 +1,43 @@
-﻿
+﻿@model IEnumerable<Category>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Category</h1>
+<h1> Category Index</h1>
 
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @*@{
+                    //sintassi Razor
+                    //https://www.learnrazorpages.com/razor-syntax
+                    //https://learn.microsoft.com/en-us/aspnet/core/mvc/views/razor
+                    var firstElem = Model.FirstOrDefault();
+                    if (firstElem != null)
+                    {
+                        @Html.DisplayNameFor(firstElem => firstElem.Name);
+                    }
+                }*@
+                Category Name
+            </th>
+            <th>
+               @* @Html.DisplayNameFor(model => model.FirstOrDefault()!.DisplayOrder)*@
+               Display Order
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.OrderBy(u => u.DisplayOrder))
+        {
+            <tr>
+                <td width="50%">
+                    @obj.Name
+                </td>
+                <td with="30%">
+                    @obj.DisplayOrder
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
