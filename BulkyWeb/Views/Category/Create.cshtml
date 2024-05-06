@@ -1,0 +1,38 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Create";
+}
+@*il form ha un'action predefinita che corrisponde alla stessa URL da cui è stato ottenuto il form tramite la GET
+    Per verificarlo si può vedere l'interazione client-server mediante i Developer Tools/Network quando si effettua una POST.
+    È comunque possibile specificare l'action con il tag asp-action. Questo è quello che viene fatto dallo scaffolder di VS'
+*@
+<form method="post" asp-action="Create">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Category</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="row mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-cotrol" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class=" row mb-3">
+            <label asp-for="DisplayOrder"></label>
+            <input asp-for="DisplayOrder" class="form-cotrol" />
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to List
+        </a>
+    </div>
+</form>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
